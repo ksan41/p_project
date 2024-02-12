@@ -39,7 +39,7 @@ body:
 }
 ```
 
-1. 로그인
+2. 로그인
 
 http://localhost:8080/manager/login
 
@@ -68,8 +68,7 @@ body:
     "data": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAxMjM0NTY3OCIsImlhdCI6MTcwNzcyMDIyMiwiZXhwIjoxNzA3NzIzODIyfQ.ISmLjzJ6gQqWO1Ovr7N5nfNJsT4MY2cMX4leO03Jk54"
 }
 ```
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/aaff3b9b-481e-47d0-86c4-6b6f457b065d/d4d7518c-b978-49d4-bb4d-4676cde2a813/Untitled.png)
+![Untitled](https://github.com/ksan41/p_project/assets/58001871/a9ae53b0-6281-438a-93f7-d645e6e3e274)
 
 ---
 
@@ -80,9 +79,10 @@ request Headers에 다음과 같이 헤더를 추가하여 요청
 - key: X-AUTH-TOKEN
 - value: 로그인하여 받은 data의 토큰(엑세스 토큰)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/aaff3b9b-481e-47d0-86c4-6b6f457b065d/54265ed7-22a2-4af3-8ac8-ec8f4314c394/Untitled.png)
+![Untitled 1](https://github.com/ksan41/p_project/assets/58001871/8a515fa3-8f07-4901-a486-828b795611e1)
 
-1. 로그아웃
+
+3. 로그아웃
 
 [http://localhost:8080/manager/lo](http://localhost:8080/manager/login)gout
 
@@ -116,7 +116,7 @@ body:
 }
 ```
 
-1. 상품 수정
+2. 상품 수정
 
 상품을 수정합니다.
 
@@ -139,7 +139,7 @@ body:
 }
 ```
 
-1. 상품 삭제
+3. 상품 삭제
 
 상품을 삭제합니다.
 
@@ -149,7 +149,7 @@ body:
 
 method: DELETE
 
-1. 상품 검색
+4. 상품 검색
 
 검색 키워드와 페이지를 지정하여 여러개의 상품을 조회합니다.
 현재 로그인되어있는 사장님의 상품만 조회 가능합니다.
@@ -165,9 +165,10 @@ params:
 - 페이지
     - page : 조회할 페이지 번호(0부터 시작)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/aaff3b9b-481e-47d0-86c4-6b6f457b065d/a370896d-6699-460e-a4bb-d5afe6ce39da/Untitled.png)
+![Untitled 2](https://github.com/ksan41/p_project/assets/58001871/b5e2015f-9ec7-4f85-9288-d21f6b2d1c0f)
 
-1. 상품 조회
+
+5. 상품 조회
 
 상품 정보를 한개 조회합니다.
 
