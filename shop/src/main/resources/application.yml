@@ -2,17 +2,27 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cafe?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/shop?seSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 1234
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
+    defer-datasource-initialization: true
     show-sql: true
+  sql:
+    init:
+      data-locations: classpath:data.sql
+      mode: always
+      
 
-jwt:
-    secret:
+jwt-config:
+    cookie-name: X-AUTH-COOKIE
+    header-name: X-AUTH-TOKEN
+    token-valid-time-refresh: 30 * 24 * 60 * 60 * 1000L
+    token-valid-time-access: 60 * 60 * 1000L
+    secret-key: CBB666DACB706EA7D53A2B8F2D77E9A391B5086CD7E4DC7959F16FBE963845F8
 
 logging:
     level:
