@@ -19,6 +19,7 @@ services:
     command:
       - "mysqld"
       - "--character-set-server=utf8mb4"
+      - "--lower_case_table_names=1"
       - "--collation-server=utf8mb4_unicode_ci"
     networks:
       - default_network
