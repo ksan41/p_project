@@ -3,7 +3,6 @@ package com.payhere.shop.domain.product.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +18,7 @@ import com.payhere.shop.domain.product.dto.ProductInfoDto;
 import com.payhere.shop.domain.product.dto.ProductManageDto;
 import com.payhere.shop.domain.product.repository.ProductRepository;
 import com.payhere.shop.util.BarcodeCreator;
+import com.payhere.shop.util.RegexManager;
 import com.payhere.shop.util.exception.NotAllowedManagerException;
 import com.payhere.shop.util.exception.ProductNotFountException;
 import com.payhere.shop.util.response.MetaData;
@@ -34,6 +34,8 @@ public class ProductManageService {
 
     private final ProductRepository productRepository;
     private final ManagerService managerService;
+    
+    private final int SEARCH_MAX_SIZE = 10;
 
     public MetaData addProduct(ProductManageDto addData, HttpServletRequest request) {
         try {
@@ -88,13 +90,14 @@ public class ProductManageService {
             Manager foundManager = managerService.getManagerByHeaderToken(request);
             Pageable pageInfo = getPageInfo(page);
             if (!keyword.isBlank()) {
-                if (!isChoStr(keyword)) {
-                    list = productRepository.searchProductsByKeyword(foundManager.getPhone(), keyword, pageInfo).stream()
-                            .map(e -> e.toDto())
-                            .toList();
-                } else {
-    
-                }
+                String regex = RegexManager.makeKeywordToRegex(keyword);
+                List<Product> allList = productRepository.findByManagerPhone(foundManager.getPhone());
+                list = allList.stream()
+                        .filter(i -> RegexManager.isKeywordMatchesRegex(i.getProductName(), regex))
+                        .skip(page * SEARCH_MAX_SIZE)
+                        .limit(SEARCH_MAX_SIZE)
+                        .map(i -> i.toDto())
+                        .toList();
             } else {
                 Page<Product> pages = productRepository.findAll(pageInfo);
                 if (!pages.getContent().isEmpty()) {
@@ -112,19 +115,7 @@ public class ProductManageService {
     }
 
     private Pageable getPageInfo(int page) {
-        return PageRequest.of(page, 10, Sort.by("productName").descending());
-    }
-
-    private final char[] CHOSUNG = { 'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ',
-            'ㅌ', 'ㅍ', 'ㅎ' };
-
-    private boolean isChoStr(String keyword) {
-        for (char c : keyword.toCharArray()) {
-            if (!Pattern.matches("[ㄱ-ㅎ]", Character.toString(c))) {
-                return false;
-            }
-        }
-        return true;
+        return PageRequest.of(page, SEARCH_MAX_SIZE, Sort.by("productName").descending());
     }
 
     public MetaData deleteProduct(HttpServletRequest request, Long productId) {

@@ -17,13 +17,11 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     
     public Optional<Product> findByProductIdAndManagerPhone(Long productId, String managerId);
 
+    public List<Product> findByManagerPhone(String managerId);
+
     @Query("select p from Product p "
             + "where p.manager.phone = :managerId and " 
             + "p.productName like concat('%', :keyword, '%')")
-    List<Product> searchProductsByKeyword(@Param("managerId") String managerId, @Param("keyword") String keyword, Pageable pageInfo);
+    public List<Product> searchProductsByKeyword(@Param("managerId") String managerId, @Param("keyword") String keyword, Pageable pageInfo);
 
-    // @Query("SELECT p FROM product p "
-    //         + "WHERE p.managerId = :managerId AND " 
-    //         + "FUNCTION('REGEXP', p.productName , :regex = true)")
-    // Page<Product> searchProductsByCho(@Param("managerId") String managerId, @Param("regex") String regex, Pageable pageable);
 }
