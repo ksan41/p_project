@@ -28,5 +28,5 @@ logging:
     level:
         root: INFO
         com:
-            payhere:
+            cafe:
                 shop: DEBUG

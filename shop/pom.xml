@@ -9,7 +9,7 @@
 		<version>3.2.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.payhere</groupId>
+	<groupId>com.cafe</groupId>
 	<artifactId>shop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>shop</name>
@@ -57,6 +57,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.10.0</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
