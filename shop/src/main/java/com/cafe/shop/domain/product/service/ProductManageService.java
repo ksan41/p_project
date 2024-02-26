@@ -36,6 +36,7 @@ public class ProductManageService {
     private final ManagerService managerService;
     
     private final int SEARCH_MAX_SIZE = 10;
+    private final String PAGE_SORT_BY = "productName";
 
     public MetaData addProduct(ProductManageDto addData, HttpServletRequest request) {
         try {
@@ -83,7 +84,6 @@ public class ProductManageService {
         return foundProduct;
     }
 
-    // 상품 조회(검색)
     public List<ProductInfoDto> searchProducts(String keyword, int page, HttpServletRequest request) {
         List<ProductInfoDto> list = new ArrayList<>();
         try {
@@ -96,6 +96,7 @@ public class ProductManageService {
                         .filter(i -> RegexManager.isKeywordMatchesRegex(i.getProductName(), regex))
                         .skip(page * SEARCH_MAX_SIZE)
                         .limit(SEARCH_MAX_SIZE)
+                        .sorted()
                         .map(i -> i.toDto())
                         .toList();
             } else {
@@ -115,7 +116,7 @@ public class ProductManageService {
     }
 
     private Pageable getPageInfo(int page) {
-        return PageRequest.of(page, SEARCH_MAX_SIZE, Sort.by("productName").descending());
+        return PageRequest.of(page, SEARCH_MAX_SIZE, Sort.by(PAGE_SORT_BY).ascending());
     }
 
     public MetaData deleteProduct(HttpServletRequest request, Long productId) {

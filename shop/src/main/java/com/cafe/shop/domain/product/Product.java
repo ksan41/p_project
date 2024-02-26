@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Product {
+public class Product implements Comparable<Product>{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -66,6 +66,11 @@ public class Product {
         this.discription = discription;
         this.barcode = barcode;
         this.size = size;
+    }
+
+    @Override
+    public int compareTo(Product product) {
+        return this.productName.compareTo(product.getProductName());
     }
 
     public void modyfyProductData(ProductManageDto productData) {
