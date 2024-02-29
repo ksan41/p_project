@@ -1,4 +1,21 @@
-# 
+# Small cafe
+카페 상품 관리 시스템을 간단하게 구현한 프로젝트입니다.
+
+## 요구사항
+* 관리자
+  - 회원가입
+  - 로그인
+  - 로그아웃
+* 상품
+  - 상품 등록
+  - 상품 수정
+  - 상품 조회
+  - 상품 키워드 검색 : 키워드 검색, 한글 초성 검색이 가능해야 한다.
+
+## 개발환경
+* Language : Java(JDK17)
+* Framework : Spring Boot, Spring Data Jpa, Spring Security
+* Database : MySQL 5.7
 
 ## 설계
 ### 도메인 모델 설계
