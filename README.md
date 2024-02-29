@@ -1,5 +1,11 @@
 # 
 
+## 설계
+
+### ERD 설계
+![cafe_erd](https://github.com/ksan41/pj_smallCafe/assets/58001871/6d085180-5742-4a7a-a9c4-7fb6d3f68d33)
+
+
 ## 프로젝트 실행
 
 > 💡 docker, docker-compose 가 설치되어 있고 실행 가능한 환경이어야 합니다.
@@ -21,7 +27,7 @@
 
 ## API 설명 & 테스트 방법
 
-### 사장님(manager)
+### 관리자(manager)
 
 1. 회원가입
 
@@ -98,7 +104,7 @@ method: POST
 1. 상품 등록
 
 상품을 등록합니다.
-현재 로그인되어있는 사장님의 상품으로 등록됩니다.
+현재 로그인되어있는 관리자의 상품으로 등록됩니다.
 
 http://localhost:8080/product/add
 
@@ -120,7 +126,7 @@ body:
 
 상품을 수정합니다.
 
-현재 로그인되어있는 사장님의 상품만 수정이 가능합니다.
+현재 로그인되어있는 관리자의 상품만 수정이 가능합니다.
 
 [http://localhost:8080/product/mod/](http://localhost:8080/product/mod/2)1
 
@@ -143,7 +149,7 @@ body:
 
 상품을 삭제합니다.
 
-현재 로그인되어있는 사장님의 상품만 삭제 가능합니다.
+현재 로그인되어있는 관리자의 상품만 삭제 가능합니다.
 
 [http://localhost:8080/product/remove/](http://localhost:8080/product/remove/2)1
 
@@ -152,7 +158,7 @@ method: DELETE
 4. 상품 검색
 
 검색 키워드와 페이지를 지정하여 여러개의 상품을 조회합니다.
-현재 로그인되어있는 사장님의 상품만 조회 가능합니다.
+현재 로그인되어있는 관리자의 상품만 조회 가능합니다.
 
 http://localhost:8080/product/search
 
@@ -172,7 +178,7 @@ params:
 
 상품 정보를 한개 조회합니다.
 
-현재 로그인되어있는 사장님의 상품만 조회 가능합니다.
+현재 로그인되어있는 관리자의 상품만 조회 가능합니다.
 
 http://localhost:8080/product/get/2
 
