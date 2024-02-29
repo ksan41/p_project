@@ -21,7 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 
     @Query("select p from Product p "
             + "where p.manager.phone = :managerId and " 
-            + "p.productName like concat('%', :keyword, '%')")
+            + "p.productInfo.productName like concat('%', :keyword, '%')")
     public List<Product> searchProductsByKeyword(@Param("managerId") String managerId, @Param("keyword") String keyword, Pageable pageInfo);
 
 }

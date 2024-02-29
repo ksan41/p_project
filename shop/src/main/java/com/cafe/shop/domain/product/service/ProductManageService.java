@@ -60,7 +60,7 @@ public class ProductManageService {
             Product foundProduct = productRepository.findByProductIdAndManagerPhone(productId, foundManager.getPhone())
                     .orElseThrow(() -> new ProductNotFountException());
 
-            foundProduct.modyfyProductData(productData);
+            foundProduct.modifyProductData(productData);
         } catch (NotAllowedManagerException e) {
             log.error(e.toString());
             return MetaData.NOT_ALLOWED_MANAGER;
@@ -93,7 +93,7 @@ public class ProductManageService {
                 String regex = RegexManager.makeKeywordToRegex(keyword);
                 List<Product> allList = productRepository.findByManagerPhone(foundManager.getPhone());
                 list = allList.stream()
-                        .filter(i -> RegexManager.isKeywordMatchesRegex(i.getProductName(), regex))
+                        .filter(i -> RegexManager.isKeywordMatchesRegex(i.getProductInfo().getProductName(), regex))
                         .skip(page * SEARCH_MAX_SIZE)
                         .limit(SEARCH_MAX_SIZE)
                         .sorted()
